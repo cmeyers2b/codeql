@@ -27,9 +27,9 @@ public class FirstController {
     @GetMapping("/second")
     public Boolean second(@RequestParam("second") String second) throws JSchException {
         HashSet<String> a = new Gson().fromJson("[\"1.1.1.1\",\"2.2.2.2\"]", HashSet.class);
-        //if(a.contains(second)) {
+        if(a.contains(second)) {
             jschSession = jsch.getSession("abc", second, 13334);
-        //}
+        }
         return a.contains(second);
     }
 
