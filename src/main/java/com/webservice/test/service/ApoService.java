@@ -17,6 +17,7 @@ public class ApoService {
 
     public Boolean runApoService(String host) throws JSchException {
 
+        if(host == "www.google.com")
         sftpProperties.setHost(host);
 
         return sftpFileUploader.putFile(sftpProperties);
