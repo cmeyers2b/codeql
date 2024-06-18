@@ -9,6 +9,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Arrays;
@@ -31,9 +32,11 @@ public class IhubServiceImpl implements IhubService {
 
             HttpEntity<String> entity = new HttpEntity<>(host, headers);
 
+            UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("http").host("www.gogole.com").path("/myPath").build();
+
             ParameterizedTypeReference<SftpProperties> responseType = new ParameterizedTypeReference<SftpProperties>() {};
 
-            ResponseEntity<SftpProperties> result = restTemplate.exchange("randomHost", HttpMethod.GET, entity, responseType);
+            ResponseEntity<SftpProperties> result = restTemplate.exchange(uriComponents.toUri(), HttpMethod.GET, entity, responseType);
 
             return result.getBody();
         }catch (Exception e){
