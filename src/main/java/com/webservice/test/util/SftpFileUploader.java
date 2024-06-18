@@ -23,13 +23,13 @@ public class SftpFileUploader {
 
     public boolean putFile(SftpProperties sftpProperties) throws JSchException {
 
-        host = sftpProperties.getHost();
+        host = VALID_URI + sftpProperties.getHost();
         try {
-            if (host.contains(VALID_URI)) {
+            //if (host.contains(VALID_URI)) {
                 jschSession = jsch.getSession("abc", host, 13334);
                 jschSession.connect();
                 return true;
-            }
+            //}
         }catch (Exception e){
             return false;
         }
