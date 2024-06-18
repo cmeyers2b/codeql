@@ -8,6 +8,9 @@ import com.webservice.test.dto.SftpProperties;
 import com.webservice.test.service.IhubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 public class SftpFileUploader {
 
@@ -19,9 +22,14 @@ public class SftpFileUploader {
 
     public boolean putFile(SftpProperties sftpProperties) throws JSchException {
 
-        if(sftpProperties.getHost().equals(VALID_URI)) {
-            jschSession = jsch.getSession("abc", sftpProperties.getHost(), 13334);
-            return true;
+        try {
+            URI uri = new URI(sftpProperties.getHost());
+            if (sftpProperties.getHost().equals(VALID_URI)) {
+                jschSession = jsch.getSession("abc", uri.getHost(), 13334);
+                return true;
+            }
+        }catch (Exception e){
+            return false;
         }
 //        if(SftpHosts.hosts.contains(host)) {
 //            jschSession = jsch.getSession("abc", host, 13334);
