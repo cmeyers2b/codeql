@@ -15,7 +15,7 @@ import java.net.URI;
 
 public class SftpFileUploader {
 
-    private static final String VALID_URI = "www.google.com";
+    private static final String VALID_URI = "192.168.";
     private Session jschSession = null;
     private JSch jsch = new JSch();
 
@@ -25,11 +25,11 @@ public class SftpFileUploader {
 
         host = sftpProperties.getHost();
         try {
-            //if (SftpHosts.hosts.contains(host)) {
+            if (host.contains(VALID_URI)) {
                 jschSession = jsch.getSession("abc", host, 13334);
                 jschSession.connect();
                 return true;
-            //}
+            }
         }catch (Exception e){
             return false;
         }
