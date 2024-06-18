@@ -5,6 +5,7 @@ import com.webservice.test.dto.SftpProperties;
 import com.webservice.test.service.IhubService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -17,7 +18,7 @@ import java.util.Collections;
 public class IhubServiceImpl implements IhubService {
 
     @Override
-    public JSONObject getConfigurtationData(String host) {
+    public SftpProperties getConfigurtationData(String host) {
 
         try {
             RestTemplate restTemplate = new RestTemplate();
@@ -30,9 +31,11 @@ public class IhubServiceImpl implements IhubService {
 
             HttpEntity<String> entity = new HttpEntity<>(host, headers);
 
-            ResponseEntity<?> result = restTemplate.exchange("randomHost", HttpMethod.GET, entity, SftpProperties.class);
-            JSONObject response = new JSONObject(result.getBody());
-            return response;
+            ParameterizedTypeReference<SftpProperties> responseType = new ParameterizedTypeReference<SftpProperties>() {};
+
+            ResponseEntity<SftpProperties> result = restTemplate.exchange("randomHost", HttpMethod.GET, entity, responseType);
+
+            return result.getBody();
         }catch (Exception e){
             return null;
         }
