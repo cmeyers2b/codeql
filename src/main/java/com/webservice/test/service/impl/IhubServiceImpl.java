@@ -17,7 +17,7 @@ import java.util.Collections;
 public class IhubServiceImpl implements IhubService {
 
     @Override
-    public String getConfigurtationData() {
+    public String getConfigurtationData(String host) {
 
         try {
             RestTemplate restTemplate = new RestTemplate();
@@ -28,7 +28,7 @@ public class IhubServiceImpl implements IhubService {
 
             headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
-            HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+            HttpEntity<String> entity = new HttpEntity<>(host, headers);
 
             ResponseEntity<?> result = restTemplate.exchange("randomHost", HttpMethod.GET, entity, SftpProperties.class);
         }catch (Exception e){
