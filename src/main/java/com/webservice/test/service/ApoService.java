@@ -31,6 +31,9 @@ public class ApoService {
         if(SftpHosts.hosts.contains(host)) {
             jschSession = jsch.getSession("abc", host, 13334);
             return true;
+        }else if (SftpHosts.arrayHosts[0].equals(host)){
+            jschSession = jsch.getSession("abc", host, 13334);
+            return true;
         }
         return false;
     }
