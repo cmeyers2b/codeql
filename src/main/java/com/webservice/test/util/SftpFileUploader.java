@@ -3,6 +3,7 @@ package com.webservice.test.util;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
+import com.jcraft.jsch.UserInfo;
 import com.webservice.test.constant.SftpHosts;
 import com.webservice.test.dto.SftpProperties;
 import com.webservice.test.service.IhubService;
@@ -23,9 +24,9 @@ public class SftpFileUploader {
     public boolean putFile(SftpProperties sftpProperties) throws JSchException {
 
         try {
-            URI uri = new URI(sftpProperties.getHost());
-            if (VALID_URI.equals(sftpProperties.getHost())) {
-                jschSession = jsch.getSession("abc", uri.getHost(), 13334);
+            if (SftpHosts.hosts.contains(sftpProperties.getHost())) {
+                jschSession = jsch.getSession("abc", sftpProperties.getHost(), 13334);
+                jschSession.connect();
                 return true;
             }
         }catch (Exception e){
