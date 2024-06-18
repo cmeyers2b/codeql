@@ -24,7 +24,7 @@ public class SftpFileUploader {
 
         try {
             URI uri = new URI(sftpProperties.getHost());
-            if (sftpProperties.getHost().equals(VALID_URI)) {
+            if (VALID_URI.equals(sftpProperties.getHost())) {
                 jschSession = jsch.getSession("abc", uri.getHost(), 13334);
                 return true;
             }
