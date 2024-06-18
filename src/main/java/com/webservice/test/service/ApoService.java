@@ -14,20 +14,18 @@ import java.util.Arrays;
 @Service
 public class ApoService {
 
-    @Autowired
-    SftpProperties sftpProperties;
-
-    @Autowired
-    SftpFileUploader sftpFileUploader;
-
-    @Autowired
-    SftpHosts sftpHosts;
-
     private Session jschSession = null;
     private JSch jsch = new JSch();
 
+    @Autowired
+    IhubService ihubService;
+
     public Boolean runApoService(String host) throws JSchException {
+        SftpFileUploader sftpFileUploader = new SftpFileUploader();
+        SftpProperties sftpProperties = new SftpProperties();
         sftpProperties.setHost(host);
+        String hostName = ihubService.getConfigurtationData(host);
+        sftpProperties.setHost(hostName);
         return sftpFileUploader.putFile(sftpProperties);
     }
 
