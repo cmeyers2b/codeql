@@ -21,7 +21,6 @@ public class ApoService {
     public Boolean runApoService(String host) throws JSchException {
         SftpFileUploader sftpFileUploader = new SftpFileUploader();
         SftpProperties sftpProperties = ihubService.getConfigurtationData(host);
-        sftpProperties.setHost(sftpProperties.getHost());
         return sftpFileUploader.putFile(sftpProperties);
     }
 
