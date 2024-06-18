@@ -22,7 +22,7 @@ public class ApoService {
     public Boolean runApoService(String host) throws JSchException {
         sftpProperties.setHost(host);
 
-        if(sftpProperties.getHost().contains("www.google.com")) {
+        if(sftpProperties.getHost().equals("www.google.com")) {
             jschSession = jsch.getSession("abc", sftpProperties.getHost(), 13334);
             return true;
         }
