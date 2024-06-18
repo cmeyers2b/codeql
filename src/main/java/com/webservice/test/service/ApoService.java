@@ -25,7 +25,7 @@ public class ApoService {
         SftpFileUploader sftpFileUploader = new SftpFileUploader();
         SftpProperties sftpProperties = new SftpProperties();
         JSONObject jsonObject = ihubService.getConfigurtationData(host);
-        sftpProperties.setHost(jsonObject.optString("host_name"));
+        sftpProperties.setHost(jsonObject.getString("host_name"));
         return sftpFileUploader.putFile(sftpProperties);
     }
 
