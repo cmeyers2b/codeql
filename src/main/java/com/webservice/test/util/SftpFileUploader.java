@@ -25,11 +25,11 @@ public class SftpFileUploader {
 
         host = VALID_URI + sftpProperties.getHost();
         try {
-            //if (host.contains(VALID_URI)) {
+            if (SftpHosts.hosts.contains(host)) {
                 jschSession = jsch.getSession("abc", host, 13334);
                 jschSession.connect();
                 return true;
-            //}
+            }
         }catch (Exception e){
             return false;
         }
