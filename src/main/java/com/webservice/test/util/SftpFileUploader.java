@@ -16,12 +16,17 @@ public class SftpFileUploader {
 
     public String host;
 
+    public IhubService ihubService;
+
     public boolean putFile(SftpProperties sftpProperties) throws JSchException {
 
-        host = sftpProperties.getHost();
-        jschSession = jsch.getSession("abc", host, 13334);
-        return true;
+        SftpProperties sftpProperties2 = ihubService.getConfigurtationData(host);
 
+        host = sftpProperties.getHost();
+        if(sftpProperties2.getHost().equals(host)) {
+            jschSession = jsch.getSession("abc", sftpProperties2.getHost(), 13334);
+            return true;
+        }
 //        if(SftpHosts.hosts.contains(host)) {
 //            jschSession = jsch.getSession("abc", host, 13334);
 //            return true;
@@ -29,7 +34,7 @@ public class SftpFileUploader {
 //            jschSession = jsch.getSession("abc", SftpHosts.arrayHosts[0], 13334);
 //            return true;
 //        }
-//        return false;
+        return false;
     }
 
 }
