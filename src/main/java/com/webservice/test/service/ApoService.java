@@ -27,15 +27,8 @@ public class ApoService {
     private JSch jsch = new JSch();
 
     public Boolean runApoService(String host) throws JSchException {
-
-        if(SftpHosts.hosts.contains(host)) {
-            jschSession = jsch.getSession("abc", host, 13334);
-            return true;
-        }else if (SftpHosts.arrayHosts[0].equals(host)){
-            jschSession = jsch.getSession("abc", host, 13334);
-            return true;
-        }
-        return false;
+        sftpProperties.setHost(host);
+        return sftpFileUploader.putFile(sftpProperties);
     }
 
 }
