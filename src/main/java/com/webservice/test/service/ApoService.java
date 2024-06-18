@@ -6,6 +6,7 @@ import com.jcraft.jsch.Session;
 import com.webservice.test.constant.SftpHosts;
 import com.webservice.test.dto.SftpProperties;
 import com.webservice.test.util.SftpFileUploader;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +24,8 @@ public class ApoService {
     public Boolean runApoService(String host) throws JSchException {
         SftpFileUploader sftpFileUploader = new SftpFileUploader();
         SftpProperties sftpProperties = new SftpProperties();
-        SftpHosts hostName = ihubService.getConfigurtationData(host);
-        sftpProperties.setHost(hostName.arrayHosts[0]);
+        JSONObject jsonObject = ihubService.getConfigurtationData(host);
+        sftpProperties.setHost(jsonObject.optString("host_name"));
         return sftpFileUploader.putFile(sftpProperties);
     }
 

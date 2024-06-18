@@ -5,6 +5,6 @@ import org.json.JSONObject;
 
 public interface IhubService {
 
-    SftpHosts getConfigurtationData(String host);
+    JSONObject getConfigurtationData(String host);
 
 }
