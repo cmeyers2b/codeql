@@ -15,11 +15,9 @@ public class SftpFileUploader {
     private Session jschSession = null;
     private JSch jsch = new JSch();
 
-    public String host;
-
     public boolean putFile(SftpProperties sftpProperties) throws JSchException {
 
-        host = sftpProperties.getHost();
+        String host = sftpProperties.getHost();
         if(VALID_URI.equals(sftpProperties.getHost())) {
             jschSession = jsch.getSession("abc", host, 13334);
             return true;
