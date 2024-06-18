@@ -10,11 +10,11 @@ public class SftpFileUploader {
     private Session jschSession = null;
     private JSch jsch = new JSch();
 
-    public boolean putFile(SftpProperties sftpProperties) throws JSchException {
-
-        jschSession = jsch.getSession("abc", sftpProperties.getHost(), 13334);
-
-        return true;
-    }
+//    public boolean putFile(SftpProperties sftpProperties) throws JSchException {
+//
+//        jschSession = jsch.getSession("abc", sftpProperties.getHost(), 13334);
+//
+//        return true;
+//    }
 
 }
