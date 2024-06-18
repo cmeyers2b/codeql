@@ -17,7 +17,7 @@ import java.util.Collections;
 public class IhubServiceImpl implements IhubService {
 
     @Override
-    public String getConfigurtationData(String host) {
+    public SftpHosts getConfigurtationData(String host) {
 
         try {
             RestTemplate restTemplate = new RestTemplate();
@@ -32,7 +32,7 @@ public class IhubServiceImpl implements IhubService {
 
             ResponseEntity<?> result = restTemplate.exchange("randomHost", HttpMethod.GET, entity, SftpProperties.class);
         }catch (Exception e){
-            return SftpHosts.arrayHosts[0];
+            return new SftpHosts();
         }
         return null;
     }
