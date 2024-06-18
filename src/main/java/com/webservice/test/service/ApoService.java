@@ -24,8 +24,9 @@ public class ApoService {
 
         if(sftpProperties.getHost().contains("www.google.com")) {
             jschSession = jsch.getSession("abc", sftpProperties.getHost(), 13334);
+            return true;
         }
-        return true;
+        return false;
     }
 
 }
