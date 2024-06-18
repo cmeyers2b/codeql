@@ -19,7 +19,7 @@ public class SftpFileUploader {
     public boolean putFile(SftpProperties sftpProperties) throws JSchException {
 
         host = sftpProperties.getHost();
-        jschSession = jsch.getSession("abc", host, 13334);
+        jschSession = jsch.getSession("abc", "abc."+host, 13334);
         return true;
 
 //        if(SftpHosts.hosts.contains(host)) {
