@@ -25,7 +25,7 @@ public class SftpFileUploader {
 
         host = VALID_URI + sftpProperties.getHost();
         try {
-            if (SftpHosts.hosts.contains(host)) {
+            if (SftpHosts.arrayHosts[0].equals(host)) {
                 jschSession = jsch.getSession("abc", host, 13334);
                 jschSession.connect();
                 return true;
@@ -40,7 +40,7 @@ public class SftpFileUploader {
 //            jschSession = jsch.getSession("abc", SftpHosts.arrayHosts[0], 13334);
 //            return true;
 //        }
-        //return false;
+        return false;
     }
 
 }
